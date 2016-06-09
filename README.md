@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # [Start Bootstrap](http://startbootstrap.com/) - [Shop Homepage](http://startbootstrap.com/template-overviews/shop-homepage/)
 
 [Shop Homepage](http://startbootstrap.com/template-overviews/shop-homepage/) is a basic HTML online store homepage template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
@@ -24,3 +25,7 @@ Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework 
 ## Copyright and License
 
 Copyright 2013-2015 Iron Summit Media Strategies, LLC. Code released under the [Apache 2.0](https://github.com/IronSummitMedia/startbootstrap-shop-homepage/blob/gh-pages/LICENSE) license.
+=======
+# E-Electrical
+Tugas PI
+>>>>>>> 331757fcb0a8dbea7d3dab97ab9e77bf7a3edf75
