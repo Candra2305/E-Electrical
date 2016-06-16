@@ -94,7 +94,7 @@ include('../admin/koneksi.php');
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>Form Edit Barang <small></small></h2>
+                  <h2>Form Edit Kategori Barang <small></small></h2>
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -104,7 +104,7 @@ include('../admin/koneksi.php');
 
    try{
    	  $kod    = $_GET['kod'];
-      $sql = 'select * from barang where id = "'.$kod.'"';
+      $sql = 'select * kategori where id = "'.$kod.'"';
       $data = $pdo->prepare($sql);
 
       //$data->bindParam (1, $_REQUEST['id']);
@@ -113,13 +113,8 @@ include('../admin/koneksi.php');
 
       $row = $data->fetch(PDO::FETCH_ASSOC);
 
-      $id = $row['id'];
-      $nama_barang = $row ['nama_barang'];
-      $gambar = $row ['gambar'];
-      $deskripsi = $row['deskripsi'];
-      $harga = $row ['harga'];
-      $jumlah = $row ['jumlah'];
       $id_kategori = $row['id_kategori'];
+      $kategori = $row['kategori'];
   } 
   catch (PDOException $e) {
    // tampilkan pesan kesalahan jika koneksi gagal
@@ -138,17 +133,18 @@ include('../admin/koneksi.php');
   else{
   $nama_barang = '';
   $harga = '';
-  $stok = '';
+  $stok = ''; 
   }*/
+  echo "kategori = $kategori";
 ?>
-                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="actionbarang.php">
+                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="actionkategori.php">
  
     
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" >Id <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" id="id" name="id"  required="required" class="form-control col-md-7 col-xs-12" value=<?php echo $id; ?>
+                        <input type="text" id="id_kategori" name="id_kategori"  required="required" class="form-control col-md-7 col-xs-12" value=<?php echo $id_kategori; ?>
                        readonly="readonly">
                       </div>
                     </div>
@@ -157,60 +153,11 @@ include('../admin/koneksi.php');
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" >Nama Barang <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" id="nama_barang" name="nama_barang" required="required" class="form-control col-md-7 col-xs-12 " value=<?php echo $nama_barang ?>>
+                        <input type="text" id="kategori" name="kategori" required="required" class="form-control col-md-7 col-xs-12 " value=<?php echo $kategori ?>>
                       </div>
                     </div>
                     
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >Gambar Barang
-                      </label>
-                      <input id="gambar" type="file" name="gambar" value=<?php echo $gambar ?>/> 
-                    </div>
 
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >Deskripsi<span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" id="deskripsi" name="deskripsi" required="required" class="form-control col-md-7 col-xs-12 " value=<?php echo $deskripsi ?>>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Harga</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="harga" class="form-control col-md-7 col-xs-12" type="text" name="harga" value=<?php echo $harga ?>>
-                      </div>
-                    </div>
-
-                   <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Jumlah</label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="jumlah" class="form-control col-md-7 col-xs-12" type="text" name="jumlah" value=<?php echo $jumlah ?>>
-                      </div>
-                    </div>
-
-                <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >Katagori <span class="required">*</span>
-                      </label>
-                    
-                            <select name="id_kategori">   
-                                     <?php
-
-                                    $result = $pdo->query('SELECT * FROM kategori');
-                                   
-
-                                       while($row = $result->fetch()){ 
-                                        ?>
-
-                                                <tr>
-                                                    <option value=<?php echo $row["id_kategori"] ?> ><?php echo $row['kategori']?> </option>   
-                                                </tr>
-                                              <?php
-                                    }
-                                    ?>   
-                                </select>     
-                    
-                    </div>
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button type="submit" class="btn btn-primary" onclick="location.href='barang.php'">Cancel</button>
                         <button type="submit" name="tedit" class="btn btn-success">Edit</button>

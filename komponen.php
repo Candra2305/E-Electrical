@@ -1,5 +1,5 @@
 <?php
-include('../admin/koneksi.php'); 
+include('koneksi.php'); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,15 +11,15 @@ include('../admin/koneksi.php');
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    
-    <link rel="shortcut icon" href="../gambar/LISTRIK.jpg"/>
+
+    <link rel="shortcut icon" href="gambar/LISTRIK.jpg"/>
     <title>E-Electrical</title>
-    <link rel="stylesheet" href=css/grop.css type="text/css" />
+
     <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../css/shop-homepage.css" rel="stylesheet">
+    <link href="css/shop-homepage.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,16 +46,25 @@ include('../admin/koneksi.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../admin/index.php">Home</a>
+                <a class="navbar-brand" href="index.php">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="../login/logout.php">Logout</a>
+                        <a href="about.html">About</a>
                     </li>
-                       <?php
+                    <li>
+                        <a href="./login/daftar.php">Daftar</a>
+                    </li>
+                    <li>
+                        <a href="./login/login.php">Login</a>
+                    </li>
+                   <li>
+                        <a href="./login/logout.php">Logout</a>
+                    </li>
+                    <?php
                         session_start();
                         if(@$_SESSION['email']){
                             echo $_SESSION['email'];
@@ -63,14 +72,16 @@ include('../admin/koneksi.php');
 
                     ?>
                 </ul>
-
+                     <form class="navbar-form navbar-right">
+                      <input class="search" type="text" placeholder="Cari..." required> 
+                     <input class="button" type="button" value="Cari">  
+                 </form>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         </div>
         <!-- /.container -->
     </nav>
-
 
     <!-- Page Content -->
     <div class="container">
@@ -80,60 +91,51 @@ include('../admin/koneksi.php');
             <div class="col-md-3">
                 <p class="lead">E-Electrical</p>
                 <div class="list-group">
-                    <a href="../admin/barang.php" class="list-group-item">Barang</a>
-                    <a href="../admin/kategori.php" class="list-group-item">Katagori</a>
-                    <a href="../admin/kategori.php" class="list-group-item">Laporan Penjualan</a>
+                    <a href="lampu.php" class="list-group-item">Lampu</a>
+                    <a href="komponen.php" class="list-group-item">Komponen </a>
+                    <a href="television.php" class="list-group-item">Television</a>
+                    <a href="kabel.php" class="list-group-item">Kabel</a>
+                    <a href="dll.php" class="list-group-item">Dll</a>
                 </div>
             </div>
 
-           
-            <center>
-             <div class="col-md-9">
-      <div class="clearfix"></div>
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>Form Tambah Kategri Barang <small></small></h2>
-                  <div class="clearfix"></div>
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+
+                    </div>
+
                 </div>
-                <div class="x_content">
-                  <br />
-                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="actionkategori.php">
-                    
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >ID <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" id="id_kategori" name="id_kategori" required="required" class="form-control col-md-7 col-xs-12">
-                      </div>
-                    </div>
 
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >Kategori <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" id="kategori" name="kategori" required="required" class="form-control col-md-7 col-xs-12">
-                      </div>
-                    </div>
-
-                    <div class="ln_solid"></div>
-                    <div class="form-group">
-                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <button type="submit" class="btn btn-primary" onclick="location.href='kategori.php'">Cancel</button>
-                        <button type="submit" name="ditambah" class="btn btn-success">Submit</button>
-                      </div>
-                    </div>
-
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-            </center>
                 
+
+                <div class="row">
+        <?php
+
+            $result = $pdo->query("SELECT * FROM barang where id_kategori = '2'");
+           
+
+               while($row = $result->fetch()){ 
+                ?>
+                                 <div class="col-sm-4 col-lg-4 col-md-4">
+                                        <div class="thumbnail">
+                                            <?php echo "<img src='gambar/".$row['gambar']."' width='100px' height='100px'/>"; ?>
+                                            <div class="caption">
+
+                                                <h4><a href="barang.php?kod=<?php echo $row['id'];?>"><?php echo $row['nama_barang']?></a>
+                                                </h4>
+                                                <p>Rp. <?php echo $row['harga'];?></p>
+                                                <p><?php echo $row['deskripsi']?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                      <?php
+            }
+            ?>   
+
+                </div>
 
             </div>
 
@@ -150,7 +152,7 @@ include('../admin/koneksi.php');
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    
+                    <p>Copyright &copy; Your Website 2016</p>
                 </div>
             </div>
         </footer>

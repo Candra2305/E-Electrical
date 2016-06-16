@@ -41,15 +41,12 @@ try{
 }
 if(isset($_POST['tedit'])){
 try{
-	$sql	= 'update barang set id = :id,nama_barang = :nama_barang,gambar = :gambar,harga = :harga,jumlah = :jumlah';
+	$sql	= 'update barang set kategori= :kategori WHERE id_kategori= :id_kategori';
 
 	$query = $pdo->prepare($sql);
-	$query -> bindParam (':id', $_POST['id']);
-	$query -> bindParam (':nama_barang', $_POST['nama_barang']);
-	$query -> bindParam (':gambar', $_POST['gambar']);
-	$query -> bindParam ('harga', $_POST['harga']);
-	$query -> bindParam ('jumlah', $_POST['jumlah']);
-
+ 	/*$query=$this->db->prepare("UPDATE barang SET id = :id,nama_barang = :nama_barang,gambar = :gambar,deskripsi= :deskripsi,harga = :harga,jumlah = :jumlah , id_kategori= :id_kategori WHERE id=:id ");*/
+	$query -> bindParam (':id_kategori', $_POST['id_kategori']);
+	$query -> bindParam (':kategori', $_POST['kategori']);
 	if($query->execute()){
 			header('location: barang.php');
 	}else{

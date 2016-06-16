@@ -1,10 +1,11 @@
 <?php
-   session_start();
-   if(isset($_SESSION['email'])) {
-   header('location:../index.php'); }
-   require_once("koneksi.php");
-?>
+include('../admin/koneksi.php'); 
 
+session_start();
+if($_SESSION['email']!="Admin@gmail.com"){
+  header("Location:../login/login.php");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,10 +17,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <link rel="shortcut icon" href="../gambar/LISTRIK.jpg"/>
+    
+    <link rel="shortcut icon" href="gambar/LISTRIK.jpg"/>
     <title>E-Electrical</title>
-
+    <link rel="stylesheet" href=css/grop.css type="text/css" />
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
@@ -41,7 +42,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="head">
+    <div class="head">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -51,63 +52,80 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../index.php">Home</a>
+                <a class="navbar-brand" href="../admin/index.php">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="about.html">About</a>
-                    </li>
-                    <li>
-                        <a href="../login/daftar.php">Daftar</a>
-                    </li>
-                    <li>
-                        <a href="../login/login.php">Login</a>
-                    </li>
-                   <li>
                         <a href="../login/logout.php">Logout</a>
                     </li>
-                    <?php
-                       
+                       <?php
+                  
                         if(@$_SESSION['email']){
                             echo $_SESSION['email'];
                         }
 
                     ?>
                 </ul>
-                 <form class="navbar-form navbar-right">
-                      <input class="search" type="text" placeholder="Cari..." required> 
-                     <input class="button" type="button" value="Cari">  
-                 </form>
-            </div>
+
             </div>
             <!-- /.navbar-collapse -->
+        </div>
         </div>
         <!-- /.container -->
     </nav>
 
-    <!-- Page login -->
-   <div class="container">
-     
-      <form class="form-signin" method="post" action="actionlogin.php">
-        <h2 class="form-signin-heading">Sign to your account</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="pass" class="form-control" placeholder="Password" required="">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">E-Electrical</p>
+                <div class="list-group">
+                    <a href="../admin/barang.php" class="list-group-item">Barang</a>
+                    <a href="../admin/kategori.php" class="list-group-item">Katagori</a>
+                    <a href="../admin/laporan.php" class="list-group-item">Laporan Penjualan</a>
+                </div>
+            </div>
+
+           
+
+                
+
+                <div class="row">
+
+                    
+                        <h1>HALLO ADMIN</h1>
+                    
+
+                </div>
+
+            </div>
+
         </div>
-        <button class="btn btn-lg btn-primary btn-block" name="sign" type="submit">Sign in</button>
-        <a href="">Forgot Password ?</a>
-      </form>
+
     </div>
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    
+                </div>
+            </div>
+        </footer>
+
     </div>
-    
+    <!-- /.container -->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

@@ -46,13 +46,22 @@ include('../admin/koneksi.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Home</a>
+                <a class="navbar-brand" href="index.php">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                     <li>
+                        <a href="../login/logout.php">Logout</a>
+                    </li>
+                       <?php
+                        session_start();
+                        if(@$_SESSION['email']){
+                            echo $_SESSION['email'];
+                        }
 
+                    ?>
                 </ul>
 
             </div>
@@ -71,9 +80,9 @@ include('../admin/koneksi.php');
             <div class="col-md-3">
                 <p class="lead">E-Electrical</p>
                 <div class="list-group">
-                    <a href="barang.html" class="list-group-item">Barang</a>
-                    <a href="lampu.html" class="list-group-item">Katagori</a>
-                    <a href="lampu.html" class="list-group-item">Laporan Penjualan</a>
+                    <a href="../admin/barang.php" class="list-group-item">Barang</a>
+                    <a href="../admin/kategori.php" class="list-group-item">Katagori</a>
+                    <a href="../admin/laporan.php" class="list-group-item">Laporan Penjualan</a>
                 </div>
             </div>
 
@@ -151,7 +160,7 @@ include('../admin/koneksi.php');
                                         ?>
 
                                                 <tr>
-                                                    <option value=$row[id_kategori] ><?php echo $row['kategori']?> </option>   
+                                                    <option value=<?php echo $row["id_kategori"] ?> ><?php echo $row['kategori']?> </option>   
                                                 </tr>
                                               <?php
                                     }

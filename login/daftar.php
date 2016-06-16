@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Home</a>
+                <a class="navbar-brand" href="../index.php">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -54,11 +54,21 @@
                         <a href="about.html">About</a>
                     </li>
                     <li>
-                        <a href="daftar.html">Daftar</a>
+                        <a href="../login/daftar.php">Daftar</a>
                     </li>
                     <li>
-                        <a href="login.html">Login</a>
+                        <a href="../login/login.php">Login</a>
                     </li>
+                   <li>
+                        <a href="../login/logout.php">Logout</a>
+                    </li>
+                    <?php
+                       
+                        if(@$_SESSION['email']){
+                            echo $_SESSION['email'];
+                        }
+
+                    ?>
                 </ul>
                  <form class="navbar-form navbar-right">
                       <input class="search" type="text" placeholder="Cari..." required> 

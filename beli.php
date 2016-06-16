@@ -1,5 +1,5 @@
 <?php
-include('../admin/koneksi.php'); 
+include('koneksi.php'); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,14 +12,14 @@ include('../admin/koneksi.php');
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <link rel="shortcut icon" href="../gambar/LISTRIK.jpg"/>
+    <link rel="shortcut icon" href="gambar/LISTRIK.jpg"/>
     <title>E-Electrical</title>
     <link rel="stylesheet" href=css/grop.css type="text/css" />
     <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../css/shop-homepage.css" rel="stylesheet">
+    <link href="css/shop-homepage.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,16 +46,25 @@ include('../admin/koneksi.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../admin/index.php">Home</a>
+                <a class="navbar-brand" href="../admin/index.html">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="../login/logout.php">Logout</a>
+                        <a href="about.html">About</a>
                     </li>
-                       <?php
+                    <li>
+                        <a href="./login/daftar.php">Daftar</a>
+                    </li>
+                    <li>
+                        <a href="./login/login.php">Login</a>
+                    </li>
+                   <li>
+                        <a href="./login/logout.php">Logout</a>
+                    </li>
+                    <?php
                         session_start();
                         if(@$_SESSION['email']){
                             echo $_SESSION['email'];
@@ -63,7 +72,10 @@ include('../admin/koneksi.php');
 
                     ?>
                 </ul>
-
+                  <form class="navbar-form navbar-right">
+                      <input class="search" type="text" placeholder="Cari..." required> 
+                     <input class="button" type="button" value="Cari">  
+                 </form>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -80,9 +92,11 @@ include('../admin/koneksi.php');
             <div class="col-md-3">
                 <p class="lead">E-Electrical</p>
                 <div class="list-group">
-                    <a href="../admin/barang.php" class="list-group-item">Barang</a>
-                    <a href="../admin/kategori.php" class="list-group-item">Katagori</a>
-                    <a href="../admin/laporan.php" class="list-group-item">Laporan Penjualan</a>
+                    <a href="lampu.php" class="list-group-item">Lampu</a>
+                    <a href="komponen.php" class="list-group-item">Komponen </a>
+                    <a href="television.php" class="list-group-item">Television</a>
+                    <a href="kabel.php" class="list-group-item">Kabel</a>
+                    <a href="dll.php" class="list-group-item">Dll</a>
                 </div>
             </div>
 
@@ -94,7 +108,7 @@ include('../admin/koneksi.php');
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>Form Edit Barang <small></small></h2>
+                  <h2>Form Beli Barang <small></small></h2>
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -103,8 +117,9 @@ include('../admin/koneksi.php');
  <?php
 
    try{
-   	  $kod    = $_GET['kod'];
-      $sql = 'select * from barang where id = "'.$kod.'"';
+     
+   	  $kod    =  $_GET['id'];
+      $sql = "select * from barang where id = '$kod' ";
       $data = $pdo->prepare($sql);
 
       //$data->bindParam (1, $_REQUEST['id']);
@@ -141,15 +156,15 @@ include('../admin/koneksi.php');
   $stok = '';
   }*/
 ?>
-                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="actionbarang.php">
+
+                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="transaksi.php?id=<?php echo $id?>">
  
     
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" >Id <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" id="id" name="id"  required="required" class="form-control col-md-7 col-xs-12" value=<?php echo $id; ?>
-                       readonly="readonly">
+                        <input type="text" id="id" name="id"  required class="form-control col-md-7 col-xs-12" value="<?php echo $id; ?>" readonly>
                       </div>
                     </div>
 
@@ -157,63 +172,34 @@ include('../admin/koneksi.php');
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" >Nama Barang <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" id="nama_barang" name="nama_barang" required="required" class="form-control col-md-7 col-xs-12 " value=<?php echo $nama_barang ?>>
-                      </div>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >Gambar Barang
-                      </label>
-                      <input id="gambar" type="file" name="gambar" value=<?php echo $gambar ?>/> 
-                    </div>
-
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >Deskripsi<span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" id="deskripsi" name="deskripsi" required="required" class="form-control col-md-7 col-xs-12 " value=<?php echo $deskripsi ?>>
+                        <input type="text" id="nama_barang" name="nama_barang" required="required" class="form-control col-md-7 col-xs-12 " value=<?php echo $nama_barang ?> readonly="readonly">
                       </div>
                     </div>
 
                     <div class="form-group">
                       <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Harga</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="harga" class="form-control col-md-7 col-xs-12" type="text" name="harga" value=<?php echo $harga ?>>
+                        <input id="harga" class="form-control col-md-7 col-xs-12" type="text" name="harga" value=<?php echo $harga ?> readonly="readonly">
                       </div>
                     </div>
 
                    <div class="form-group">
-                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Jumlah</label>
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Stok</label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="jumlah" class="form-control col-md-7 col-xs-12" type="text" name="jumlah" value=<?php echo $jumlah ?>>
+                        <input id="jumlah" class="form-control col-md-7 col-xs-12" type="text" name="stok" value=<?php echo $jumlah ?> readonly="readonly">
                       </div>
                     </div>
 
-                <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" >Katagori <span class="required">*</span>
-                      </label>
-                    
-                            <select name="id_kategori">   
-                                     <?php
-
-                                    $result = $pdo->query('SELECT * FROM kategori');
-                                   
-
-                                       while($row = $result->fetch()){ 
-                                        ?>
-
-                                                <tr>
-                                                    <option value=<?php echo $row["id_kategori"] ?> ><?php echo $row['kategori']?> </option>   
-                                                </tr>
-                                              <?php
-                                    }
-                                    ?>   
-                                </select>     
-                    
+                     <div class="form-group">
+                      <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Jumlah</label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="jumlah" class="form-control col-md-7 col-xs-12" type="text" name="jumlah">
+                      </div>
                     </div>
+
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button type="submit" class="btn btn-primary" onclick="location.href='barang.php'">Cancel</button>
-                        <button type="submit" name="tedit" class="btn btn-success">Edit</button>
+                        <button type="submit" name="beli" class="btn btn-success">Beli</button>
                       </div>
                     </div>
 

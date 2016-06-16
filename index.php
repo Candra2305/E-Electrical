@@ -1,3 +1,6 @@
+<?php
+include('koneksi.php'); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,11 +92,11 @@
             <div class="col-md-3">
                 <p class="lead">E-Electrical</p>
                 <div class="list-group">
-                    <a href="lampu.html" class="list-group-item">Lampu</a>
-                    <a href="komponen.html" class="list-group-item">Komponen </a>
-                    <a href="television.html" class="list-group-item">Television</a>
-                    <a href="kabel.html" class="list-group-item">Kabel</a>
-                    <a href="dll.html" class="list-group-item">Dll</a>
+                    <a href="lampu.php" class="list-group-item">Lampu</a>
+                    <a href="komponen.php" class="list-group-item">Komponen </a>
+                    <a href="television.php" class="list-group-item">Television</a>
+                    <a href="kabel.php" class="list-group-item">Kabel</a>
+                    <a href="dll.php" class="list-group-item">Dll</a>
                 </div>
             </div>
 
@@ -133,121 +136,30 @@
                 
 
                 <div class="row">
+        <?php
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="gambar/harga-lampu-led.jpg" alt="">
-                            <div class="caption">
-                            
-                                <h4><a href="Philips.html">Philips</a>
-                                </h4>
-                                <p>Rp. 40.000</p>
-                                <p>Lampu Philips Led Putih 9 Watt</a>.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+            $result = $pdo->query("SELECT * FROM barang where id_kategori = '1' or id_kategori='2'");
+           
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="gambar/Stop-Kontak.jpg" alt="">
-                            <div class="caption">
-                              
-                                <h4><a href="stopkontak.html">Stop Kontak</a>
-                                </h4>
-                                <p>Rp. 60.000</p>
-                                <p>Colokan stop kontak</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">12 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="gambar/led.jpg" alt="">
-                            <div class="caption">
-                                <h4><a href="lampuled.html">Lampu led</a>
-                                </h4>
-                                <p>Rp. 22.500</p>
-                                <p>Lampu Led warna putih 12 watt.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">31 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+               while($row = $result->fetch()){ 
+                ?>
+                                 <div class="col-sm-4 col-lg-4 col-md-4">
+                                        <div class="thumbnail">
+                                            <?php echo "<img src='gambar/".$row['gambar']."' width='100px' height='100px'/>"; ?>
+                                            <div class="caption">
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="gambar/antena.jpg" alt="">
-                            <div class="caption">
-                               
-                                <h4><a href="antena.html">Antena</a>
-                                </h4>
-                                <p>Rp. 119.000</p>
-                                <p>Antena dalam digital.</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">6 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                                                <h4><a href="barang.php?kod=<?php echo $row['id'];?>"><?php echo $row['nama_barang']?></a>
+                                                </h4>
+                                                <p>Rp. <?php echo $row['harga'];?></p>
+                                                <p><?php echo $row['deskripsi']?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                      <?php
+            }
+            ?>   
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="gambar/xenon.jpg" alt="">
-                            <div class="caption">
-                                <h4><a href="xenonphilips.html">Lampu Xenon Philips</a>
-                                </h4>
-                                <p>Rp. 50.000</p>
-                                <p>Lampu Motor Xenon Philips</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">18 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    
+                </div>
 
                 </div>
 

@@ -1,3 +1,7 @@
+<?php
+include('../admin/koneksi.php'); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <link rel="shortcut icon" href="gambar/LISTRIK.jpg"/>
+    <link rel="shortcut icon" href="../gambar/LISTRIK.jpg"/>
     <title>E-Electrical</title>
     <link rel="stylesheet" href=css/grop.css type="text/css" />
     <!-- Bootstrap Core CSS -->
@@ -29,7 +33,7 @@
 
 <body>
     <!--Daftar dan Login-->
-
+    
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -43,13 +47,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../admin/index.html">Home</a>
+                <a class="navbar-brand" href="../admin/index.php">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li>
+                        <a href="../login/logout.php">Logout</a>
+                    </li>
+                       <?php
+                        session_start();
+                        if(@$_SESSION['email']){
+                            echo $_SESSION['email'];
+                        }
 
+                    ?>
                 </ul>
 
             </div>
@@ -74,23 +87,47 @@
                 </div>
             </div>
 
+                    
+                
+            <h2>E-ELECTRICAL</h2>
+            
+            <center>
+            <table border="2">
+                <tr  width="1200" bgcolor="#D8D8D8">
+                    <td align="center" rowspan="1" width="80" > 
+                        <b><font size="4">Id </b></font></td>
+                    <td align="center" rowspan="1" width="300" > 
+                        <b><font size="4">Email </b></font></td>
+                    <td align="center" rowspan="1" width="300"> 
+                        <b><font size="4">Nama Barang</b></font></td>
+                    <td align="center" rowspan="1" width="300"> 
+                        <b><font size="4">Jumlah Beli</b></font></td>
+    
+            <?php
+
+            $result = $pdo->query('SELECT * FROM transaksi');
            
 
-                
+               while($row = $result->fetch()){ 
+                ?>
 
-                <div class="row">
+                        <tr>
+                            <td p align="center" bgcolor="#FFFFFF"><?php echo $row['id']; ?></td>
+                            <td p align="center" bgcolor="#FFFFFF"><?php echo $row['email']; ?></td>
+                            <td p align="center" bgcolor="#FFFFFF"><?php echo $row['nama_barang']; ?></td>
+                            <td p align="center" bgcolor="#FFFFFF"><?php echo $row['jumlah_beli']; ?></td>
 
-                    
-                        <h1>HALLO ADMIN</h1>
-                    
-
-                </div>
-
+                        </tr>
+                      <?php
+            }
+            ?>
+                </table>
+                </center>
             </div>
 
         </div>
 
-    </div>
+    
     <!-- /.container -->
 
     <div class="container">

@@ -13,8 +13,8 @@
        echo "<div align='center'>Password salah! <a href='login.php'>Back</a></div>";
      } else {
        $_SESSION['email'] = $hasil['email'];
-       if(@$hasil['Admin@gmail.com']){
-       		header('location:../admin/index.html');	
+       if($_SESSION['email'] == "Admin@gmail.com"){
+       		header('location:../admin/index.php');	
        }else{
        	header('location:../index.php');
        }
